@@ -1,0 +1,26 @@
+{
+  "subject": "Math",
+  "title": "Algebra",
+  "questions": [
+    {
+      "q": "What is 1/2 + 1/4?",
+      "options": [
+        "1/4",
+        "1/2",
+        "3/4",
+        "1"
+      ],
+      "answer": "3/4"
+    },
+    {
+      "q": "Which is greater: 2/3 or 3/5?",
+      "options": [
+        "2/3",
+        "3/5",
+        "Equal"
+      ],
+      "answer": "2/3"
+    }
+  ],
+  "id": 2
+}
