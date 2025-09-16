@@ -25,7 +25,7 @@ An intuitive **Learning Management System for K-12 education** with built-in **A
 
 ## 📌 Notes
   - By default, for low CPU and low RAM systems, use **flan-t5-base**. The first run will download the model
-  - For more accurate AI insights, use **Phi-3-mini via Hugging Face** Transformers (**requires 20-25 GBs of RAM + GPU**)
+  - For more accurate AI insights, use **Phi-3-mini via Hugging Face** Transformers (**requires 20-25 GBs of RAM + GPU Check ```utils/ai.py```**) 
   - Model takes time to execute as running locally
   - Teacher and Student Login are dummy data
   - Project developed for 1 subject (Math), 1 teacher (Smith), multiple students (Alice, Bob, Champak) 
