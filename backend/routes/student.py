@@ -63,7 +63,11 @@ def submit_quiz(quiz_id: int, quiz_title: str, submission: Submission):
     past_attempts = [s for s in submissions if s["student_id"] == submission.student_id]
     attempt_number = len(past_attempts) + 1
 
+    if past_attempts:
+        return {"error": "Quiz already attempted"}
+    
     sub_record = {
+        "quiz_id": quiz["id"],
         "student_id": submission.student_id,
         "attempt": attempt_number,
         "answers": submission.answers,
