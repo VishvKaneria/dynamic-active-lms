@@ -42,7 +42,7 @@ An intuitive **Learning Management System for K-12 education** with built-in **A
 ### Clone the Repo  
 ```bash
 git clone https://github.com/VishvKaneria/dynamic-active-lms.git
-cd ai-lms
+cd dynamic-active-lms-main
 ```
 
 ### Install backend requirements:
