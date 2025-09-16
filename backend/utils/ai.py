@@ -2,6 +2,7 @@ from transformers import pipeline
 import re
 
 """
+    #### Note ####
     If using "microsoft/phi-3-mini-4k-instruct" then change "text-generation" in reasoner.
 """
 
