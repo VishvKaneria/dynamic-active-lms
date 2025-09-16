@@ -1,12 +1,16 @@
 from transformers import pipeline
 import re
 
-# Use Phi-3-mini (open and unrestricted)
-DEFAULT_MODEL = "microsoft/phi-3-mini-4k-instruct"
+"""
+    If using "microsoft/phi-3-mini-4k-instruct" then change "text-generation" in reasoner.
+"""
 
-# Load once at startup
+# "microsoft/phi-3-mini-4k-instruct"
+DEFAULT_MODEL = "google/flan-t5-base"
+
 reasoner = pipeline(
-    "text-generation",
+    #"text-generation",
+    "text2text-generation",
     model=DEFAULT_MODEL,
     device_map="auto",
     torch_dtype="auto"
