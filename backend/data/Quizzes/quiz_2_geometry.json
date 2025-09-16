@@ -1,0 +1,57 @@
+{
+  "subject": "Math",
+  "title": "Geometry",
+  "questions": [
+    {
+      "q": "What is the sum of interior angles of a triangle?",
+      "options": [
+        "90\u00b0",
+        "180\u00b0",
+        "270\u00b0",
+        "360\u00b0"
+      ],
+      "answer": "180\u00b0"
+    },
+    {
+      "q": "A square has side length 6 cm. What is its area?",
+      "options": [
+        "12 cm\u00b2",
+        "18 cm\u00b2",
+        "24 cm\u00b2",
+        "36 cm\u00b2"
+      ],
+      "answer": "36 cm\u00b2"
+    },
+    {
+      "q": "A circle has radius 7 cm. What is its circumference (use  \ud835\udf0b = 22 / 7 \u03c0=22/7)?",
+      "options": [
+        "22 cm",
+        "44 cm",
+        "66 cm",
+        "77 cm"
+      ],
+      "answer": "66 cm"
+    },
+    {
+      "q": "Which shape has exactly one pair of parallel sides?",
+      "options": [
+        "Square",
+        "Rectangle",
+        "Parallelogram",
+        "Trapezium"
+      ],
+      "answer": "Trapezium"
+    },
+    {
+      "q": "In a right triangle, if one angle is 30\u00b0, the other acute angle is:",
+      "options": [
+        "45\u00b0",
+        "50\u00b0",
+        "60\u00b0",
+        "75\u00b0"
+      ],
+      "answer": "60\u00b0"
+    }
+  ],
+  "id": 2
+}

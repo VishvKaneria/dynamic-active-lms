@@ -83,7 +83,7 @@ export default function StudentDashboard() {
       
       <p className="mb-10 text-lg opacity-90">Take quizzes and track your results.</p>
 
-      <div className="grid md:grid-cols-2 gap-6">
+      <div className="grid md:grid-cols-4 gap-6">
         {quizzes.map((quiz) => (
           <div
             key={quiz.id}

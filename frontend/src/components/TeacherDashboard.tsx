@@ -19,11 +19,24 @@ interface InsightsQuiz {
       average_score: number;
       highest: number;
       lowest: number;
+      score_distribution: {
+        full_marks: number;
+        zero: number;
+        partial: number;
+      };
     };
     question_analysis: {
       q: string;
+      answer: string;
       correct_rate: number;
       most_common_wrong: string | null;
+    }[];
+    student_feedback: {
+      student_id: string;
+      score: number;
+      total: number;
+      accuracy_rate: number;
+      wrong_answers: string[];
     }[];
   };
 }
@@ -32,7 +45,7 @@ export default function TeacherDashboard() {
   const [quizzes, setQuizzes] = useState<Quiz[]>([]);
   const [showForm, setShowForm] = useState(false);
   const [selectedQuiz, setSelectedQuiz] = useState<{ id: number; title: string } | null>(null);
-  const [insights, setInsights] = useState<string | null>(null);
+  const [insights, setInsights] = useState<any | null>(null);
   const [insightsQuiz, setInsightsQuiz] = useState<InsightsQuiz | null>(null);
   const [loadingInsights, setLoadingInsights] = useState(false);
 
@@ -61,7 +74,7 @@ export default function TeacherDashboard() {
       const data = await res.json();
       console.log("INSIGHTS RESPONSE:", data);
 
-      setInsights(data.ai_insights || "⚠️ No AI insights generated.");
+      setInsights(data.ai_insights || null);
       setInsightsQuiz({
         id: quizId,
         title: quizTitle,
@@ -182,40 +195,71 @@ export default function TeacherDashboard() {
       {/* Insights Modal */}
       {insightsQuiz && !loadingInsights && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center p-4">
-          <div className="bg-white text-gray-900 rounded-lg w-full max-w-3xl shadow-lg p-6 overflow-y-auto max-h-[80vh]">
+          <div className="bg-white text-gray-900 rounded-lg w-full max-w-4xl shadow-lg p-6 overflow-y-auto max-h-[80vh]">
             <h2 className="text-2xl font-bold mb-4">
               🧠 AI Insights – {insightsQuiz.title}
             </h2>
 
-            {/* Class Performance Cards */}
+            {/* Class Performance */}
             {insightsQuiz.analytics && (
-              <div className="grid grid-cols-2 gap-4 mb-6">
-                <div className="p-4 bg-gray-100 rounded">
-                  <h3 className="font-semibold">👥 Students</h3>
-                  <p>{insightsQuiz.analytics.class_overview.total_students}</p>
-                </div>
-                <div className="p-4 bg-gray-100 rounded">
-                  <h3 className="font-semibold">📊 Average Score</h3>
-                  <p>{insightsQuiz.analytics.class_overview.average_score.toFixed(2)}</p>
-                </div>
-                <div className="p-4 bg-gray-100 rounded">
-                  <h3 className="font-semibold">🏆 Highest</h3>
-                  <p>{insightsQuiz.analytics.class_overview.highest}</p>
-                </div>
-                <div className="p-4 bg-gray-100 rounded">
-                  <h3 className="font-semibold">⬇️ Lowest</h3>
-                  <p>{insightsQuiz.analytics.class_overview.lowest}</p>
-                </div>
+              <div className="mb-6">
+                <h3 className="text-xl font-semibold mb-2">📊 Class Performance</h3>
+                <p>Total Students: {insightsQuiz.analytics.class_overview.total_students}</p>
+                <p>Average Score: {insightsQuiz.analytics.class_overview.average_score.toFixed(2)}</p>
+                <p>Highest Score: {insightsQuiz.analytics.class_overview.highest}</p>
+                <p>Lowest Score: {insightsQuiz.analytics.class_overview.lowest}</p>
+                <p>
+                  Score Distribution → ✅ Full: {insightsQuiz.analytics.class_overview.score_distribution.full_marks}, 
+                  ⚠️ Partial: {insightsQuiz.analytics.class_overview.score_distribution.partial}, 
+                  ❌ Zero: {insightsQuiz.analytics.class_overview.score_distribution.zero}
+                </p>
               </div>
             )}
 
-            {/* AI-generated Insights */}
-            <div className="mb-4">
-              <h3 className="font-semibold">🤖 AI Insights</h3>
-              <pre className="whitespace-pre-wrap text-gray-800">
-                {insights}
-              </pre>
-            </div>
+            {/* Question Analysis */}
+            {/*
+            {insightsQuiz?.analytics?.question_analysis && insightsQuiz.analytics.question_analysis.length > 0 && (
+              <div className="mb-6">
+                <h3 className="text-xl font-semibold mb-2">❓ Question-Level Analysis</h3>
+                <ul className="list-disc ml-6 space-y-4">
+                  {insightsQuiz.analytics.question_analysis.map((q, idx) => (
+                    <li key={idx} className="mb-4">
+                      <strong>Q{idx + 1}:</strong> {q.q} <br />
+                      <span className="flex items-center">✅ Correct Rate: {q.correct_rate.toFixed(1)}%</span>
+                      <span className="flex items-center">❌ Common Wrong: {q.most_common_wrong || "None"}</span>
+                      <span className="flex items-center">🎯 Correct Answer: {q.answer}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+
+            {/* Student Feedback */} 
+            {/*
+            {insightsQuiz?.analytics?.student_feedback && insightsQuiz.analytics.student_feedback.length > 0 && (
+              <div className="mb-6">
+                <h3 className="text-xl font-semibold mb-2">🧑‍🎓 Student-Level Feedback</h3>
+                <ul className="list-disc ml-6 space-y-4">
+                  {insightsQuiz.analytics.student_feedback.map((s, idx) => (
+                    <li key={idx}>
+                      <strong>{s.student_id}</strong>: {s.score}/{s.total} ({s.accuracy_rate}%)<br />
+                      Wrong Answers: {s.wrong_answers.length > 0 ? s.wrong_answers.join(", ") : "None"}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+            */}
+
+            {/* AI-Generated Recommendations */}
+            {insights && (
+              <div className="mb-4">
+                <h3 className="text-xl font-semibold mb-2">🤖 AI Recommendations</h3>
+                <p className="whitespace-pre-wrap text-gray-800 bg-gray-100 p-3 rounded leading-relaxed">
+                  {insights}
+                </p>
+              </div>
+            )}
 
             <div className="mt-6 flex justify-end">
               <button

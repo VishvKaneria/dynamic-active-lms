@@ -3,14 +3,104 @@
   "title": "Fractions",
   "questions": [
     {
-      "q": "1/2 + 3/4 = ?",
+      "q": "What is 1/2 + 3/4?",
       "options": [
+        "1",
         "5/4",
-        "1/2",
-        "2/3",
-        "3/4"
+        "7/6",
+        "3/2"
       ],
       "answer": "5/4"
+    },
+    {
+      "q": "Which fraction is equivalent to 3/4?",
+      "options": [
+        "6/8",
+        "4/5",
+        "9/16",
+        "2/5"
+      ],
+      "answer": "6/8"
+    },
+    {
+      "q": "Simplify 18/24.",
+      "options": [
+        "3/4",
+        "2/3",
+        "4/5",
+        "9/10"
+      ],
+      "answer": "3/4"
+    },
+    {
+      "q": "What is 2/5 \u00d7 3/7?",
+      "options": [
+        "5/35",
+        "6/35",
+        "6/12",
+        "5/7"
+      ],
+      "answer": "6/35"
+    },
+    {
+      "q": "Convert 7/4 into a mixed number.",
+      "options": [
+        "2 1/4",
+        "1 3/4",
+        "1 2/3",
+        "3 1/2"
+      ],
+      "answer": "2 1/4"
+    },
+    {
+      "q": "What is 5/6 \u00f7 2/3?",
+      "options": [
+        "5/9",
+        "15/12",
+        "5/4",
+        "1/2"
+      ],
+      "answer": "5/4"
+    },
+    {
+      "q": "Which fraction is greater: 5/8 or 3/4?",
+      "options": [
+        "5/8",
+        "3/4",
+        "Both equal",
+        "Cannot compare"
+      ],
+      "answer": "3/4"
+    },
+    {
+      "q": "If a pizza is cut into 12 slices and you eat 3, what fraction is left?",
+      "options": [
+        "1/4",
+        "2/3",
+        "3/4",
+        "9/12"
+      ],
+      "answer": "2/3"
+    },
+    {
+      "q": "Find the sum: 2/3 + 5/9.",
+      "options": [
+        "7/12",
+        "11/9",
+        "9/14",
+        "1"
+      ],
+      "answer": "11/9"
+    },
+    {
+      "q": "Which of these fractions is in simplest form?",
+      "options": [
+        "10/20",
+        "12/18",
+        "7/15",
+        "8/12"
+      ],
+      "answer": "7/15"
     }
   ],
   "id": 1

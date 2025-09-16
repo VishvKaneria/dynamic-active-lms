@@ -170,8 +170,8 @@ export default function QuizForm({
               {questions.length > 1 && (
                 <button
                   onClick={() => removeQuestion(idx)}
-                  className="absolute top-2 right-2 bg-white-500 text-red px-2 py-1 rounded hover:bg-white-600 text-sm"
-                >
+                  className="absolute top-2 right-2 bg-red-500 text-white px-2 py-1 rounded hover:bg-red-600 text-sm"
+                  >
                   Remove
                 </button>
               )}

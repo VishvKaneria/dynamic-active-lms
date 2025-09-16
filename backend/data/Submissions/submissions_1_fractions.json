@@ -1,35 +1,214 @@
 [
   {
     "quiz_id": 1,
-    "student_id": "alice",
+    "student_id": "Alice",
     "attempt": 1,
     "answers": [
-      "5/4"
+      "5/4",
+      "6/8",
+      "3/4",
+      "5/35",
+      "1 3/4",
+      "5/4",
+      "3/4",
+      "2/3",
+      "11/9",
+      "7/15"
     ],
-    "score": 1,
-    "total": 1,
+    "score": 8,
+    "total": 10,
     "feedback": [
       {
-        "question": "1/2 + 3/4 = ?",
+        "question": "What is 1/2 + 3/4?",
         "student_answer": "5/4",
+        "is_correct": true
+      },
+      {
+        "question": "Which fraction is equivalent to 3/4?",
+        "student_answer": "6/8",
+        "is_correct": true
+      },
+      {
+        "question": "Simplify 18/24.",
+        "student_answer": "3/4",
+        "is_correct": true
+      },
+      {
+        "question": "What is 2/5 \u00d7 3/7?",
+        "student_answer": "5/35",
+        "is_correct": false
+      },
+      {
+        "question": "Convert 7/4 into a mixed number.",
+        "student_answer": "1 3/4",
+        "is_correct": false
+      },
+      {
+        "question": "What is 5/6 \u00f7 2/3?",
+        "student_answer": "5/4",
+        "is_correct": true
+      },
+      {
+        "question": "Which fraction is greater: 5/8 or 3/4?",
+        "student_answer": "3/4",
+        "is_correct": true
+      },
+      {
+        "question": "If a pizza is cut into 12 slices and you eat 3, what fraction is left?",
+        "student_answer": "2/3",
+        "is_correct": true
+      },
+      {
+        "question": "Find the sum: 2/3 + 5/9.",
+        "student_answer": "11/9",
+        "is_correct": true
+      },
+      {
+        "question": "Which of these fractions is in simplest form?",
+        "student_answer": "7/15",
         "is_correct": true
       }
     ]
   },
   {
     "quiz_id": 1,
-    "student_id": "bob",
+    "student_id": "Bob",
     "attempt": 1,
     "answers": [
-      "1/2"
+      "5/4",
+      "6/8",
+      "3/4",
+      "6/35",
+      "1 3/4",
+      "5/4",
+      "3/4",
+      "2/3",
+      "11/9",
+      "7/15"
     ],
-    "score": 0,
-    "total": 1,
+    "score": 9,
+    "total": 10,
     "feedback": [
       {
-        "question": "1/2 + 3/4 = ?",
-        "student_answer": "1/2",
+        "question": "What is 1/2 + 3/4?",
+        "student_answer": "5/4",
+        "is_correct": true
+      },
+      {
+        "question": "Which fraction is equivalent to 3/4?",
+        "student_answer": "6/8",
+        "is_correct": true
+      },
+      {
+        "question": "Simplify 18/24.",
+        "student_answer": "3/4",
+        "is_correct": true
+      },
+      {
+        "question": "What is 2/5 \u00d7 3/7?",
+        "student_answer": "6/35",
+        "is_correct": true
+      },
+      {
+        "question": "Convert 7/4 into a mixed number.",
+        "student_answer": "1 3/4",
         "is_correct": false
+      },
+      {
+        "question": "What is 5/6 \u00f7 2/3?",
+        "student_answer": "5/4",
+        "is_correct": true
+      },
+      {
+        "question": "Which fraction is greater: 5/8 or 3/4?",
+        "student_answer": "3/4",
+        "is_correct": true
+      },
+      {
+        "question": "If a pizza is cut into 12 slices and you eat 3, what fraction is left?",
+        "student_answer": "2/3",
+        "is_correct": true
+      },
+      {
+        "question": "Find the sum: 2/3 + 5/9.",
+        "student_answer": "11/9",
+        "is_correct": true
+      },
+      {
+        "question": "Which of these fractions is in simplest form?",
+        "student_answer": "7/15",
+        "is_correct": true
+      }
+    ]
+  },
+  {
+    "quiz_id": 1,
+    "student_id": "Champak",
+    "attempt": 1,
+    "answers": [
+      "7/6",
+      "4/5",
+      "3/4",
+      "6/35",
+      "2 1/4",
+      "5/9",
+      "3/4",
+      "2/3",
+      "11/9",
+      "7/15"
+    ],
+    "score": 7,
+    "total": 10,
+    "feedback": [
+      {
+        "question": "What is 1/2 + 3/4?",
+        "student_answer": "7/6",
+        "is_correct": false
+      },
+      {
+        "question": "Which fraction is equivalent to 3/4?",
+        "student_answer": "4/5",
+        "is_correct": false
+      },
+      {
+        "question": "Simplify 18/24.",
+        "student_answer": "3/4",
+        "is_correct": true
+      },
+      {
+        "question": "What is 2/5 \u00d7 3/7?",
+        "student_answer": "6/35",
+        "is_correct": true
+      },
+      {
+        "question": "Convert 7/4 into a mixed number.",
+        "student_answer": "2 1/4",
+        "is_correct": true
+      },
+      {
+        "question": "What is 5/6 \u00f7 2/3?",
+        "student_answer": "5/9",
+        "is_correct": false
+      },
+      {
+        "question": "Which fraction is greater: 5/8 or 3/4?",
+        "student_answer": "3/4",
+        "is_correct": true
+      },
+      {
+        "question": "If a pizza is cut into 12 slices and you eat 3, what fraction is left?",
+        "student_answer": "2/3",
+        "is_correct": true
+      },
+      {
+        "question": "Find the sum: 2/3 + 5/9.",
+        "student_answer": "11/9",
+        "is_correct": true
+      },
+      {
+        "question": "Which of these fractions is in simplest form?",
+        "student_answer": "7/15",
+        "is_correct": true
       }
     ]
   }

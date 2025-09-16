@@ -1,10 +1,9 @@
-import re, os
+import re, os, json
 from fastapi import APIRouter
 from pydantic import BaseModel
 from utils.file_utils import load_file, save_file
 from fastapi import HTTPException
 from utils.ai import generate_ai_summary
-from collections import Counter
 
 router = APIRouter()
 
@@ -123,21 +122,24 @@ def quiz_insights(quiz_id: int, quiz_title: str):
     if len(submissions) == 0:
         return {"analytics": {}, "ai_insights": "⚠️ No student submissions yet."}
 
-    # --- Compute Class Performance ---
+    # --- Class Performance ---
     scores = [s["score"] for s in submissions]
     total_students = len(submissions)
     avg_score = sum(scores) / total_students
     highest = max(scores)
     lowest = min(scores)
 
-    # --- Question-Level Analysis ---
+    score_distribution = {
+        "full_marks": sum(1 for s in submissions if s["score"] == len(quiz["questions"])),
+        "zero": sum(1 for s in submissions if s["score"] == 0),
+        "partial": sum(1 for s in submissions if 0 < s["score"] < len(quiz["questions"]))
+    }
+
+    # --- Question-Level ---
     question_stats = []
-    question_breakdown_lines = []
     for i, q in enumerate(quiz["questions"]):
         correct_count = sum(1 for s in submissions if i < len(s["answers"]) and s["answers"][i] == q["answer"])
-        total_attempts = len(submissions)
-        correct_rate = (correct_count / total_attempts) * 100
-
+        correct_rate = (correct_count / total_students) * 100
         wrong_answers = {}
         for s in submissions:
             if i < len(s["answers"]) and s["answers"][i] != q["answer"]:
@@ -147,38 +149,39 @@ def quiz_insights(quiz_id: int, quiz_title: str):
 
         question_stats.append({
             "q": q["q"],
+            "answer": q["answer"],
             "correct_rate": correct_rate,
             "most_common_wrong": most_common_wrong
         })
-        question_breakdown_lines.append(
-            f"Q{i+1}: {q['q']} | Correct Rate: {correct_rate:.1f}% | Common Mistake: {most_common_wrong}"
-        )
 
-    # --- Prompt for AI ---
-    prompt = f"""
-    You are an educational consultant helping a teacher understand quiz results. 
-    Do not just repeat the scores. Instead, analyze what these results mean about student understanding, 
-    highlight likely misconceptions, and give specific teaching recommendations. 
+    # --- Build summary text for AI ---
+    hardest = sorted(question_stats, key=lambda q: q["correct_rate"])[:2]
+    hardest_text = ", ".join([f"{q['q']} ({q['correct_rate']:.0f}% correct)" for q in hardest])
+    misconceptions = [f"{q['q']} → {q['most_common_wrong']}" for q in question_stats if q["most_common_wrong"]]
 
-    Quiz Title: {quiz_title}
-    Total Students: {total_students}
-    Average Score: {avg_score:.2f}/{len(quiz['questions'])}
+    summary_text = f"""
+    Class average: {avg_score:.1f}/{len(quiz['questions'])}
     Highest: {highest}, Lowest: {lowest}
-
-    Question Results:
-    {chr(10).join(question_breakdown_lines)}
-
-    Now write a teacher-friendly report that includes:
-    - What these results say about overall student understanding.
-    - What misconceptions the wrong answers suggest.
-    - Whether the quiz was fair or too difficult.
-    - What teaching strategies the teacher should use next class.
+    Hardest questions: {hardest_text if hardest_text else 'None'}
+    Common misconceptions: {', '.join(misconceptions) if misconceptions else 'None'}
     """
 
-    try:
-        ai_text = generate_ai_summary(prompt).strip()
-    except Exception as e:
-        ai_text = f"⚠️ AI model error: {str(e)}"
+    prompt = f"""
+    ### START_PROMPT
+    You are an expert K-12 math teacher coach. Based on this quiz data, write a clear, supportive narrative (1–2 short paragraphs) that helps the teacher understand class performance and what to do next.
+
+    Class average: {avg_score:.1f}/{len(quiz['questions'])}
+    Highest: {highest}, Lowest: {lowest}
+    Hardest questions: {hardest_text if hardest_text else 'None'}
+    Common misconceptions: {', '.join(misconceptions) if misconceptions else 'None'}
+
+    Start directly with the insights. 
+    Do not echo the quiz data. 
+    Do not include greetings (like 'Dear Teacher') or closings (like 'Best,').
+    ### END_PROMPT
+    """
+
+    ai_result = generate_ai_summary(prompt)
 
     return {
         "analytics": {
@@ -187,8 +190,9 @@ def quiz_insights(quiz_id: int, quiz_title: str):
                 "average_score": avg_score,
                 "highest": highest,
                 "lowest": lowest,
+                "score_distribution": score_distribution
             },
             "question_analysis": question_stats
         },
-        "ai_insights": ai_text
+        "ai_insights": ai_result
     }
